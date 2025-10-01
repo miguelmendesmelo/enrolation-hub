@@ -109,7 +109,7 @@ export default function RegisterPage() {
               <span className="text-retro-magenta rgb-shadow">ENROLATION</span>
             </h1>
             <h2 className="text-2xl font-bold text-retro-cyan font-mono mb-4">
-              /// HUB
+              {'//'} / HUB
             </h2>
             <div className="h-1 w-32 mx-auto bg-gradient-to-r from-transparent via-retro-green to-transparent"></div>
             <p className="text-retro-green mt-4 font-mono text-sm">

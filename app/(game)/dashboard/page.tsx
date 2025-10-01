@@ -158,7 +158,7 @@ export default async function DashboardPage() {
           </h3>
           <div className="space-y-3">
             {leaderboard && leaderboard.length > 0 ? (
-              leaderboard.map((entry: any, index: number) => (
+              leaderboard.map((entry: { profiles?: { username?: string }; total_points: number }, index: number) => (
                 <div key={index} className="flex items-center justify-between">
                   <div className="flex items-center space-x-3">
                     <span className="text-lg font-bold text-orange-500">

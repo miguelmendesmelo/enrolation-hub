@@ -100,7 +100,7 @@ export default async function RankingPage() {
             </thead>
             <tbody className="divide-y divide-gray-200">
               {leaderboard && leaderboard.length > 0 ? (
-                leaderboard.map((entry: any, index: number) => {
+                leaderboard.map((entry: { profiles?: { username?: string }; total_points: number; games_won: number; games_played: number }, index: number) => {
                   const position = index + 1
                   const isTopThree = position <= 3
                   const winRate = getWinRate(entry.games_won, entry.games_played)

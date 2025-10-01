@@ -25,15 +25,8 @@ export default function Game2048Page() {
   const [bestScore, setBestScore] = useState(0)
   const [gameOver, setGameOver] = useState(false)
   const [won, setWon] = useState(false)
-  const [saving, setSaving] = useState(false)
   const router = useRouter()
   const supabase = createClient()
-
-  useEffect(() => {
-    loadBestScore()
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [grid])
 
   const loadBestScore = async () => {
     const {
@@ -107,8 +100,6 @@ export default function Game2048Page() {
   }
 
   const saveScore = async (finalScore: number) => {
-    setSaving(true)
-
     try {
       const {
         data: { user },
@@ -169,8 +160,6 @@ export default function Game2048Page() {
       }
     } catch (error) {
       console.error('Error saving score:', error)
-    } finally {
-      setSaving(false)
     }
   }
 
@@ -180,6 +169,13 @@ export default function Game2048Page() {
     setGameOver(false)
     setWon(false)
   }
+
+  useEffect(() => {
+    loadBestScore()
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const getTileColor = (value: number) => {
     const colors: Record<number, string> = {
