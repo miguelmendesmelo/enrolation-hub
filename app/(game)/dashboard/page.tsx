@@ -158,14 +158,14 @@ export default async function DashboardPage() {
           </h3>
           <div className="space-y-3">
             {leaderboard && leaderboard.length > 0 ? (
-              leaderboard.map((entry: { profiles?: { username?: string }; total_points: number }, index: number) => (
+              leaderboard.map((entry, index) => (
                 <div key={index} className="flex items-center justify-between">
                   <div className="flex items-center space-x-3">
                     <span className="text-lg font-bold text-orange-500">
                       #{index + 1}
                     </span>
                     <span className="text-sm text-gray-700">
-                      {entry.profiles?.username || 'Jogador'}
+                      {Array.isArray(entry.profiles) && entry.profiles[0]?.username || 'Jogador'}
                     </span>
                   </div>
                   <span className="text-sm font-semibold text-orange-600">
