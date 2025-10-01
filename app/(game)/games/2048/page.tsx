@@ -49,9 +49,32 @@ export default function Game2048Page() {
     }
   }
 
-  const handleKeyDown = (e: KeyboardEvent) => {
+  const makeMove = (direction: Direction) => {
     if (gameOver || won) return
 
+    const { grid: newGrid, score: moveScore, moved } = move(grid, direction)
+
+    if (!moved) return
+
+    addRandomTile(newGrid)
+    setGrid(newGrid)
+    const newScore = score + moveScore
+    setScore(newScore)
+
+    // Check win condition
+    if (hasWon(newGrid) && !won) {
+      setWon(true)
+      saveScore(newScore)
+    }
+
+    // Check game over
+    if (isGameOver(newGrid)) {
+      setGameOver(true)
+      saveScore(newScore)
+    }
+  }
+
+  const handleKeyDown = (e: KeyboardEvent) => {
     let direction: Direction | null = null
 
     switch (e.key) {
@@ -74,28 +97,6 @@ export default function Game2048Page() {
     if (direction) {
       e.preventDefault()
       makeMove(direction)
-    }
-  }
-
-  const makeMove = (direction: Direction) => {
-    const { grid: newGrid, score: moveScore, moved } = move(grid, direction)
-
-    if (!moved) return
-
-    addRandomTile(newGrid)
-    setGrid(newGrid)
-    setScore(score + moveScore)
-
-    // Check win condition
-    if (hasWon(newGrid) && !won) {
-      setWon(true)
-      saveScore(score + moveScore)
-    }
-
-    // Check game over
-    if (isGameOver(newGrid)) {
-      setGameOver(true)
-      saveScore(score + moveScore)
     }
   }
 
@@ -172,10 +173,13 @@ export default function Game2048Page() {
 
   useEffect(() => {
     loadBestScore()
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  })
 
   const getTileColor = (value: number) => {
     const colors: Record<number, string> = {
