@@ -1,8 +1,20 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Cores RGB Retro + Bege */
+  --retro-red: #FF0040;
+  --retro-green: #00FF41;
+  --retro-blue: #0080FF;
+  --retro-cyan: #00FFFF;
+  --retro-magenta: #FF00FF;
+  --retro-yellow: #FFFF00;
+  --beige-light: #FAF6EE;
+  --beige: #E5CB9F;
+  --beige-dark: #9A7A4D;
+  --retro-dark: #1A1A1A;
+
+  --background: var(--beige-light);
+  --foreground: var(--retro-dark);
 }
 
 @theme inline {
@@ -12,15 +24,36 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Courier New', Courier, monospace; /* Fonte retro */
+}
+
+/* Efeitos RGB Retro */
+.rgb-shadow {
+  text-shadow:
+    2px 2px 0 var(--retro-red),
+    -2px -2px 0 var(--retro-cyan);
+}
+
+.rgb-border {
+  border: 2px solid var(--retro-magenta);
+  box-shadow:
+    0 0 10px var(--retro-magenta),
+    inset 0 0 10px rgba(255, 0, 255, 0.2);
+}
+
+.retro-glow {
+  box-shadow: 0 0 20px currentColor;
+}
+
+/* Animação RGB */
+@keyframes rgb-rotate {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+.rgb-animate {
+  animation: rgb-rotate 3s linear infinite;
 }
