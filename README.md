@@ -1,4 +1,4 @@
-# 🎮 Strategi Games
+# 🎮 Enrolation Hub
 
 Uma plataforma de jogos casuais com sistema de pontuação, ranking e pet virtual da equipe. Construída com Next.js 14, Supabase e Tailwind CSS.
 
