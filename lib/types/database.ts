@@ -58,7 +58,7 @@ export interface MultiplayerRoom {
   player1_id: string
   player2_id: string | null
   status: 'waiting' | 'playing' | 'finished'
-  game_state: any
+  game_state: Record<string, unknown>
   winner_id: string | null
   current_turn: string | null
   created_at: string

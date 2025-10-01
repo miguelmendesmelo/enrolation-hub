@@ -43,8 +43,8 @@ export async function GET() {
       last_updated: petStatus.last_updated,
       interactions: interactions || [],
     })
-  } catch (error: any) {
+  } catch (error) {
     console.error('Pet status error:', error)
-    return NextResponse.json({ error: error.message || 'Failed to get pet status' }, { status: 500 })
+    return NextResponse.json({ error: error instanceof Error ? error.message : 'Failed to get pet status' }, { status: 500 })
   }
 }

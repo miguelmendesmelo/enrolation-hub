@@ -11,7 +11,6 @@ interface GameCardProps {
   icon: React.ReactNode
   href: string
   points: string
-  color?: string
 }
 
 export default function GameCard({
@@ -20,7 +19,6 @@ export default function GameCard({
   icon,
   href,
   points,
-  color = 'orange'
 }: GameCardProps) {
   return (
     <Link href={href}>

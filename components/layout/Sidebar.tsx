@@ -36,7 +36,7 @@ export default function Sidebar() {
           <h1 className="text-2xl font-bold tracking-wider">
             <span className="text-retro-magenta rgb-shadow">ENROLATION</span>
             <br />
-            <span className="text-retro-cyan text-lg"> /// HUB</span>
+            <span className="text-retro-cyan text-lg"> {'//'} / HUB</span>
           </h1>
         </div>
 
